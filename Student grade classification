@@ -1,0 +1,59 @@
+import os
+import json
+
+file="school.json"
+
+if os.path.exists(file):
+    with open (file,"r") as f:
+        school_detail=json.load(f)
+
+else:
+    school_detail={}
+
+while True:
+    print("\nWelcome to Academia School")
+    print("1.create a student details: ")
+    print("2.view student details: ")
+    print("3.exit from student details: ")
+
+    choice=input("enter the choice: ").lower()
+    if choice=="1":
+        name=input("kindly enter the name to add in school: ").lower()
+        if name in school_detail:
+            print(f"student {name} data already exist")
+        else:
+            age=input("kindly enter the age: ")
+            clAss=input("kindly enter the class: ")
+            marks=int(input("kindly enter the marks details: "))
+            grade=0
+            if marks <=49:
+                grade="E"
+            elif marks >=50 and marks<=59:
+                grade="D"
+            elif marks >=60 and marks <=69:
+                grade="C"
+            elif marks >=70 and marks <= 79:
+                grade="B"
+            elif marks >=80 and marks <=89:
+                grade="A"
+            elif marks >=90 and marks <=100:
+                grade="A+"
+            else:
+                grade="Fail"
+            school_detail[name]={"age":age,"cLass":clAss,"marks":marks,"grade":grade}
+            print(f"{name},{age},{clAss},{marks},{grade}")
+    elif choice=="2":
+        name=input("kindly enter the student name you search").lower()
+        if name in school_detail:
+            detail=school_detail[name]
+            print(f"name={name},age={age},Class={clAss},marks={marks},grade={grade}")
+        else:
+            print("student details not enter")
+
+    elif choice=="3":
+        with open(file,"w") as f:
+            json.dump(school_detail,f)
+        print("thank you for visit our school website")
+        break
+    else:
+        print("invalid choice")
