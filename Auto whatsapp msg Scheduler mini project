@@ -1,0 +1,61 @@
+#twilio module
+#datetime module
+#time module
+
+#install required librarry
+from twilio.rest import Client
+from datetime import datetime, timedelta
+import time
+
+#twilio credential
+
+account_sid="#############################"
+auth_token="#############################"
+
+client=Client(account_sid,auth_token)
+
+#design sent massage function
+def sent_whatsapp_massage(recipient_number,message_body):
+    try:
+        message=client.messages.create(
+            from_="whatsapp:+#############",
+            body=message_body,
+            to=f"whatsapp:{recipient_number}"
+        )
+        print(f"message sent successfully! Message SID{message.sid}")
+    except Exception as e:
+        print("An error Occured!")
+
+#user input
+
+name=input("Enter the recipient name= ")
+recipient_number=input("Enter the Recipient whatsapp Number with country code#(e.g, +12345)= ")
+message_body=input(f"enter the message you want to sent to {name}: ")
+
+#parse date/time and calculater delay
+
+date_str=input("enter the date to send the message (YYYY-MM-DD): ")
+time_str=input("enter the time to send the message (HH:MM in 24hours format): ")
+
+#datetime
+
+datetime_str = f"{date_str} {time_str}"
+schedule_datetime = datetime.strptime(datetime_str, "%Y-%m-%d %H:%M")
+
+current_datetime=datetime.now()
+
+#calculate delay
+
+time_difference=schedule_datetime - current_datetime
+delay_seconds=time_difference.total_seconds()
+
+if delay_seconds <=0:
+    print("The specific time is in the past. please enter a future date and time: ")
+else:
+    print(f"Message Scheduled to be sent to {name} at {schedule_datetime}.")
+
+    #wait until the schedule time
+    time.sleep(delay_seconds)
+
+    #send the message
+    sent_whatsapp_massage(recipient_number,message_body)
