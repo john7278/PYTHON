@@ -1,0 +1,38 @@
+items = {
+    "potato":30,
+    "onion":50,
+    "carrot":60,
+    "pees":50,
+    "watermalon":60,
+    "apple":100,
+    "mango":30,
+    "bule_berry":70,
+    
+}
+
+print("Welcome to D mart Food and vegg")
+print(f"{items}")
+
+price=0
+
+while True:
+    FirstItems=input("kindly enter the input: ").lower()
+
+    if FirstItems in items:
+        price +=items[FirstItems]
+        print(f"you select {FirstItems} and Price Rs.{price}")
+    else:
+        print(f"the item {FirstItems} not in items list")
+
+    choice=input("have you want to chhose any other item, YES or NO: ").strip().lower()
+    if choice !="yes":
+        break
+
+GrossAmount=price;
+Gst=price * 18 / 100;
+NetAmount=GrossAmount + Gst;
+
+print(f"**********************************BILL******************************************")
+print(f"Gross Price is Rs.{GrossAmount}")
+print(f"Gst Amount is Rs.{Gst}")
+print(f"Net Amountr is Rs.{NetAmount}")
