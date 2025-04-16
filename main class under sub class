@@ -1,0 +1,48 @@
+class age_calculation():
+    def __init__(self,name,age,gender):
+        self.name=name
+        self.age=age
+        self.gender=gender
+        self.cal = self.misc(religion, marks, grade)
+        if self.age>=0 and self.age<=5:
+            self.state = "Children"
+        elif self.age>=6 and self.age<=17:
+            self.state="teenager"
+        elif self.age>=18 and self.age<=29:
+            self.state="young"
+        elif self.age>=30 and self.age<=59:
+            self.state="midele age"
+        elif self.age>=60 and self.age<=99:
+            self.state="old age"
+        
+
+    def info(self):
+        print("Name:",self.name)
+        print("Age:",self.age)
+        print("Gender:",self.gender)
+        print("State:",self.state)
+        self.cal.info()
+
+
+    class misc():
+        def __init__(self,religion,marks,grade):
+            self.religion=religion
+            self.marks=marks
+            self.grade=grade
+
+        def info(self):
+            print("Religion: ",self.religion)
+            print("marks: ",self.marks)
+            print("grade: ",self.grade)
+
+name=input("kindly enter the name: ")
+age=int(input("kindly enter the age: "))
+gender=input("kindly enter the gender: ")
+
+religion=input("kindly enter the religion: ")
+marks=int(input("kindly enter the marks: "))
+grade=input("kindy enter the grade: ")
+
+
+c1=age_calculation(name,age,gender)
+c1.info()
