@@ -1,0 +1,30 @@
+def plus(a,b):
+    return a+b
+
+def minus(a,b):
+    return a-b
+
+def multiply(a,b):
+    return a*b
+
+def devide(a,b):
+    return a/b
+
+
+a=int(input("kindly enter the first number: "))
+b=int(input("kindly entet the second input: "))
+
+funcTion=input("kindly enter the function want to calculate: ")
+
+functions={
+    "+":plus,
+    "-":minus,
+    "*":multiply,
+    "/":devide
+}
+
+if funcTion in functions:
+    outPut=functions[funcTion](a,b)
+    print("Output:", outPut)
+else:
+    print("invalid function")
